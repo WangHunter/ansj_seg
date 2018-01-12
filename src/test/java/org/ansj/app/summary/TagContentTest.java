@@ -17,7 +17,7 @@ import java.util.List;
 public class TagContentTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 
 		String query = "信息公开 工作要点";
 
@@ -67,7 +67,7 @@ public class TagContentTest {
 	}
 
 	@Test
-	public void test1() {
+	public void test1() throws Exception {
 
 		String query = "信息公开 工作要点";
 
@@ -98,7 +98,7 @@ public class TagContentTest {
 
 
 	@Test
-	public void testVI() {
+	public void testVI() throws Exception {
 
 		String query = "VI";
 
@@ -127,7 +127,7 @@ public class TagContentTest {
 	}
 
 	@Test
-	public void test2() {
+	public void test2() throws Exception {
 
 		String query = "孙明波";
 
@@ -153,7 +153,7 @@ public class TagContentTest {
 	}
 
 	@Test
-	public void test4() {
+	public void test4() throws Exception {
 
 		TagContent tc = new TagContent("<begin>", "<end>");
 
@@ -172,7 +172,7 @@ public class TagContentTest {
 	}
 
 	@Test
-	public void englishWordTest() {
+	public void englishWordTest() throws Exception {
 		String query = "plasma";
 
 		String content = "Aerodynamic Control of High Performance Aircraft Using Pulsed Plasma Actuators";
@@ -198,7 +198,7 @@ public class TagContentTest {
 
 
 	@Test
-	public void testHighlight() {
+	public void testHighlight() throws Exception {
 
 		Forest forest = new Forest() ;
 		forest.add("nuclear",null);
@@ -482,7 +482,7 @@ public class TagContentTest {
 
 
 	@Test
-	public void test3() {
+	public void test3() throws Exception {
 
 		DicLibrary.put(DicLibrary.DEFAULT,null);
 

@@ -62,7 +62,7 @@ public class SummaryComputer {
 	 *
 	 * @return
 	 */
-	public Summary toSummary() {
+	public Summary toSummary() throws Exception {
 		return toSummary(new ArrayList<Keyword>());
 	}
 
@@ -71,7 +71,7 @@ public class SummaryComputer {
 	 *
 	 * @return
 	 */
-	public Summary toSummary(String query) {
+	public Summary toSummary(String query) throws Exception {
 
 		List<Term> parse = NlpAnalysis.parse(query).getTerms();
 
@@ -91,7 +91,7 @@ public class SummaryComputer {
 	 *
 	 * @return
 	 */
-	public Summary toSummary(List<Keyword> keywords) {
+	public Summary toSummary(List<Keyword> keywords) throws Exception {
 
 		if (keywords == null) {
 			keywords = new ArrayList<Keyword>();

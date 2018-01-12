@@ -3,6 +3,7 @@ package org.ansj.app.keyword;
 import org.ansj.domain.Term;
 import org.ansj.splitWord.Analysis;
 import org.ansj.splitWord.analysis.NlpAnalysis;
+import org.ansj.stopWord.GetStopWordList;
 import org.nlpcn.commons.lang.util.StringUtil;
 
 import java.util.*;
@@ -61,27 +62,44 @@ public class KeyWordComputer<T extends Analysis> {
      * @param content 正文
      * @return
      */
-    private List<Keyword> computeArticleTfidf(String content, int titleLength) {
-        Map<String, Keyword> tm = new HashMap<String, Keyword>();
+    private List<Keyword> computeArticleTfidf(String content, int titleLength) throws Exception {
 
+
+        GetStopWordList getStopWordList = new GetStopWordList();
+        Map<String, List> map = getStopWordList.getStopWordList();
+        List<String> list_c = map.get("MacroDef.STOP_CHINESE");
+        List<String> list_e = map.get("MacroDef.STOP_ENGLISH");
+
+        Map<String, Keyword> tm = new HashMap<String, Keyword>();
         List<Term> parse = analysisType.parseStr(content).getTerms();
         //FIXME: 这个依赖于用户自定义词典的词性,所以得需要另一个方法..
 //		parse = FilterModifWord.updateNature(parse) ;
 
         for (Term term : parse) {
-            double weight = getWeight(term, content.length(), titleLength);
-            if (weight == 0)
-                continue;
+            boolean flag = true;
+            String str = term.getName().trim();
+            for (String str_c : list_c) {
+                if (str_c.equals(str.toString()))
+                    flag = false;
+            }
+            for (String str_e : list_e) {
+                if (str_e.equals(str.toString()))
+                    flag = false;
+            }
+            if (flag) {
+                double weight = getWeight(term, content.length(), titleLength);
+                if (weight == 0)
+                    continue;
 
-            Keyword keyword = tm.get(term.getName());
+                Keyword keyword = tm.get(term.getName());
 
 
-
-            if (keyword == null) {
-                keyword = new Keyword(term.getName(), term.termNatures().allFreq, weight);
-                tm.put(term.getName(), keyword);
-            } else {
-                keyword.updateWeight(1);
+                if (keyword == null) {
+                    keyword = new Keyword(term.getName(), term.termNatures().allFreq, weight);
+                    tm.put(term.getName(), keyword);
+                } else {
+                    keyword.updateWeight(1);
+                }
             }
         }
 
@@ -101,7 +119,7 @@ public class KeyWordComputer<T extends Analysis> {
      * @param content 正文
      * @return
      */
-    public List<Keyword> computeArticleTfidf(String title, String content) {
+    public List<Keyword> computeArticleTfidf(String title, String content) throws Exception {
         if (StringUtil.isBlank(title)) {
             title = "";
         }
@@ -117,7 +135,7 @@ public class KeyWordComputer<T extends Analysis> {
      * @param content
      * @return
      */
-    public List<Keyword> computeArticleTfidf(String content) {
+    public List<Keyword> computeArticleTfidf(String content) throws Exception {
         return computeArticleTfidf(content, 0);
     }
 

@@ -6,10 +6,9 @@ import org.ansj.app.summary.pojo.Summary;
 import org.nlpcn.commons.lang.util.IOUtil;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 
 public class SummaryTest {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 
 		BufferedReader reader = IOUtil.getReader("/Users/ansj/Documents/temp/test.txt", "utf-8");
 

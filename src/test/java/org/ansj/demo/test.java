@@ -38,14 +38,14 @@ public class test {
         while(it.hasNext()) {
             boolean flag = true;
             Keyword key2=(Keyword)it.next();
-            for (String str_c : list_c) {
-                if (str_c.equals(key2.getName().toString()))
-                    flag = false;
-            }
-            for (String str_e : list_e) {
-                if (str_e.equals(key2.getName().toString()))
-                    flag = false;
-            }
+//            for (String str_c : list_c) {
+//                if (str_c.equals(key2.getName().toString()))
+//                    flag = false;
+//            }
+//            for (String str_e : list_e) {
+//                if (str_e.equals(key2.getName().toString()))
+//                    flag = false;
+//            }
             if(flag) {
                 System.out.println(key2.getName().toString()+key2.getScore());
             }
