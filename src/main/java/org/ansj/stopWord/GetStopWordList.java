@@ -10,12 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author:blogchong
- * @E-mail: blogchong@163.com
  * @Version:1.0
- * @blog  www.blogchong.com
- * @CreateTime：2014年12月16日 下午3:12:26
  * @Description:获取系统的停用词表
+ * 读取指定目录的文件来限制停用词
  */
 
 public class GetStopWordList {
@@ -92,11 +89,11 @@ public class GetStopWordList {
 //        for (String str : list) {
 //            System.out.println(str);
 //        }
-        String str = "我们";
-        String[] aa = str.split(" ");
-        for(int i=0;i<aa.length;i++){
-            System.out.println(aa[i]);
-        }
+//        String str = "我们";
+//        String[] aa = str.split(" ");
+//        for(int i=0;i<aa.length;i++){
+//            System.out.println(aa[i]);
+//        }
 
     }
 
